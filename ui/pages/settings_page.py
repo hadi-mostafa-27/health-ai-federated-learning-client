@@ -15,7 +15,7 @@ class SettingsPage(BasePage):
         widget = QWidget()
         form = QFormLayout(widget)
         self.fields = {}
-        for key in ["hospital_id", "hospital_name", "country", "city", "server_url", "api_token", "models_dir", "dataset_dir", "reports_dir"]:
+        for key in ["hospital_id", "hospital_name", "country", "city", "models_dir", "dataset_dir", "reports_dir"]:
             edit = QLineEdit(str(config.get(key, "")))
             self.fields[key] = edit
             form.addRow(key, edit)

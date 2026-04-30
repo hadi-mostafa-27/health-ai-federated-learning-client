@@ -51,7 +51,6 @@ hiddenimports = [
     "torchvision",
     "torchvision.models",
     "torchvision.transforms",
-    "pydantic",
 ]
 
 excludes = [

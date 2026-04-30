@@ -13,7 +13,6 @@ SCHEMA = [
         hospital_name TEXT,
         country TEXT,
         city TEXT,
-        server_url TEXT,
         node_status TEXT,
         created_at TEXT DEFAULT CURRENT_TIMESTAMP
     )

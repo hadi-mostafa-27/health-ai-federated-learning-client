@@ -10,43 +10,161 @@
   </a>
 </p>
 
-Academic PySide6 + PyTorch + FastAPI prototype for studying federated learning across hospital chest X-ray pneumonia classifiers.
+Academic PySide6 + PyTorch + SQLite desktop prototype for studying federated learning workflows across hospitals for chest X-ray pneumonia classification.
 
-This project is a research and teaching prototype. It is not a clinical device.
+This project is a research and teaching prototype. It is not a clinical device and must not be used for real patient diagnosis.
 
-
-For the main academic master report, see [docs/ACADEMIC_MASTER_REPORT.md](docs/ACADEMIC_MASTER_REPORT.md).
+For the main academic master report, see [docs/ACADEMIC_MASTER_REPORT.md](docs/ACADEMIC_MASTER_REPORT.md).  
 For supporting technical documentation, see [docs/PROJECT_DOCUMENTATION.md](docs/PROJECT_DOCUMENTATION.md).
-
-
-## GitHub Safety Note
-
-The repository is configured to keep source code, documentation, tests, configuration, and build scripts under version control while excluding local datasets, trained model checkpoints, SQLite databases, reports, Docker exports, virtual environments, and generated Windows build outputs.
 
 ## Project Objective
 
-The objective is to compare local-only, centralized, FedAvg, and FedProx training for binary chest X-ray classification:
+The project demonstrates how hospitals can participate in a federated learning workflow without centralizing raw chest X-ray images. It focuses on a binary classification task:
 
 - `NORMAL`
 - `PNEUMONIA`
 
-The code emphasizes reproducibility, transparent metrics, non-IID simulation, and honest privacy/security boundaries.
+The application emphasizes:
+
+- clear hospital/admin workflows
+- reproducible dataset preparation
+- local and federated training simulation
+- FedAvg and FedProx comparison
+- medical AI evaluation metrics
+- visual project monitoring
+- Grad-CAM explanation outputs
+- result reporting and Docker demo export
+
+## Desktop Application Overview
+
+The application is a Windows desktop GUI built with PySide6. It contains two main roles:
+
+- Admin / Ministry user
+- Hospital user
+
+The GUI is designed around real project workflows rather than a single training script. Users can register hospitals, request FL projects, approve/reject requests, select participating hospitals, run FL rounds, inspect results, and export completed project artifacts.
+
+## Main GUI Pages
+
+| Page | Main Purpose |
+| --- | --- |
+| Dashboard | Shows role-specific project status, hospital availability, latest completed FL project, activity summary, and visual FL network state. |
+| Hospital Registry | Admin view for managing hospital profiles and active/inactive availability. |
+| Project Requests | Admin approval workflow for hospital-submitted FL project requests. |
+| Request Project | Hospital workflow for requesting a new federated learning project. |
+| Project Invitations | Hospital view for accepted/available projects. |
+| FL Project Runner | Select hospitals, configure FL settings, run simulated FL rounds, and generate final results. |
+| Dataset | Register chest X-ray folders, validate class structure, summarize distributions, and create reproducible splits. |
+| Local Training | Train a local DenseNet121 pneumonia classifier and save best checkpoints. |
+| Prediction | Run image-level predictions using the available local model. |
+| Grad-CAM | Generate original, heatmap, overlay, and comparison images for model explanation. |
+| Results | View project metrics, confusion matrices, false negatives, false positives, completed projects, and Docker export options. |
+| Profile | View current user/hospital identity, status, and role information. |
+| Settings | Configure local paths, hospital identity, dataset folder, model folder, and report folder. |
+
+## Dashboard And Workflow Features
+
+### Admin Dashboard
+
+The admin dashboard focuses on network-level supervision:
+
+- total registered hospitals
+- active vs inactive hospitals
+- pending project requests
+- latest completed FL project
+- selected/participating hospitals
+- project status summaries
+- visual FL network canvas
+- inactive hospitals shown as unavailable/red
+- completed project access through the results area
+
+The admin does not run predictions directly from the dashboard because prediction is a hospital/model workflow.
+
+### Hospital Dashboard
+
+The hospital dashboard focuses on local participation:
+
+- hospital identity and status
+- local dataset availability
+- joined project status
+- local training readiness
+- prediction and Grad-CAM access
+- project invitation/request workflow
+- completed project outputs
+
+Inactive hospitals are blocked from new FL participation until reactivated.
+
+### FL Project Runner
+
+The project runner is the main workflow for simulated federated training:
+
+- choose project name and settings
+- select active hospitals
+- skip inactive/unavailable hospitals
+- configure number of communication rounds
+- choose FedAvg or FedProx
+- show project progress round by round
+- animate model movement between the central aggregator and participating hospitals
+- generate final project metrics after completion
+- mark completed projects for result review and Docker export
+
+The animation is a visualization of the simulated FL workflow. It does not replace metric reporting.
+
+### Results Page
+
+The results page is designed for academic reporting:
+
+- completed FL projects
+- final accuracy/loss where available
+- precision, recall/sensitivity, specificity, F1-score, ROC-AUC
+- false negative and false positive counts
+- confusion matrix display
+- per-round performance summaries
+- client/hospital-level results
+- Docker export availability for completed projects
+
+False negatives are highlighted because missing pneumonia is clinically serious.
+
+### Docker Export
+
+Completed FL projects can generate a prototype Docker deployment package for each joined hospital. The export contains:
+
+- final model artifact or placeholder artifact
+- project metadata
+- selected FL settings
+- hospital metadata
+- final metrics
+- `Dockerfile`
+- `README_DEPLOY.md`
+- `run_container.bat`
+- ZIP archive of the package
+
+Export location:
+
+```text
+exports/docker/<project_id>/<hospital_name>/
+```
+
+In the installed Windows app, generated exports may be written under the app data folder depending on packaging/runtime path handling.
 
 ## System Architecture
 
-| Area | Main files | Purpose |
+| Area | Main Files | Purpose |
 | --- | --- | --- |
-| Dataset handling | `core/dataset_manager.py`, `core/non_iid.py` | Validate folders, summarize distributions, create reproducible splits, simulate hospital data skew. |
-| Model/training | `core/model_loader.py`, `core/trainer.py` | DenseNet121 binary head, BCEWithLogitsLoss, class imbalance handling, threshold tuning, best checkpoint saving. |
-| Federated simulation | `core/fl_engine.py` | Partial participation, weighted FedAvg aggregation, FedProx local objective, per-round tracking. |
-| Evaluation | `core/metrics.py`, `core/experiment_runner.py`, `core/report_generator.py` | Accuracy, precision, recall, F1, ROC-AUC, sensitivity, specificity, confusion matrices, CSV/JSON reports. |
-| Persistence | `core/db.py` | SQLite schema for experiments, model versions, federated rounds, client updates, metrics, confusion matrices. |
-| UI | `ui/pages/*.py` | Dataset validation, training controls, FL monitoring, Grad-CAM, results tables. |
-| Mock coordinator | `server/mock_fl_server.py` | Prototype server for model upload/download testing only. |
+| App entry point | `app.py` | Launches the PySide6 desktop application. |
+| UI shell | `ui/main_window.py`, `ui/pages/*.py` | Role-based navigation and GUI pages. |
+| Dashboard visualizer | `ui/widgets/fl_network_canvas.py` | Draws the federated project network and active/inactive hospital status. |
+| Dataset handling | `core/dataset_manager.py`, `core/non_iid.py` | Validates folders, summarizes distributions, creates reproducible splits, and simulates hospital skew. |
+| Model/training | `core/model_loader.py`, `core/trainer.py` | DenseNet121 binary classifier, BCEWithLogitsLoss, class weighting, threshold tuning, and checkpoints. |
+| Federated simulation | `core/fl_engine.py` | Weighted FedAvg, FedProx, partial participation, local metrics, and round tracking. |
+| Evaluation | `core/metrics.py`, `core/experiment_runner.py`, `core/report_generator.py` | Medical metrics, CSV/JSON reports, and experiment summaries. |
+| Persistence | `core/db.py` | SQLite schema for users, hospitals, requests, projects, rounds, metrics, exports, and activity logs. |
+| Docker export | `core/docker_exporter.py` | Creates prototype Docker deployment packages for completed projects. |
+| Packaging | `HospitalFLSystem.spec`, `build_exe.bat`, `installer/HospitalFLSystem.iss` | Builds the Windows executable folder and installer. |
 
-## Dataset Description
+## Dataset Format
 
-Folder datasets must use:
+Datasets must follow this folder structure:
 
 ```text
 dataset_root/
@@ -54,57 +172,67 @@ dataset_root/
   PNEUMONIA/
 ```
 
-The dataset manager records total images, class distribution, train/validation/test counts, imbalance ratio, invalid images, and warnings for missing classes, small datasets, and severe imbalance.
+The dataset manager records:
 
-Validation and test transforms do not use augmentation. Training transforms use mild geometric augmentation.
+- total image count
+- class distribution
+- train/validation/test split counts
+- imbalance ratio
+- invalid image warnings
+- missing class warnings
+- small dataset warnings
+
+Training transforms may use augmentation. Validation and test transforms do not use augmentation.
 
 ## Federated Learning Methodology
 
-Each round selects a subset of participating hospitals according to `participation_fraction`. Each selected hospital trains locally and sends a model update with its local sample count.
+The project simulates federated learning inside the desktop application. Each selected hospital trains locally on its own partition and contributes an update with its local sample count.
 
-### FedAvg
-
-Weighted aggregation is used:
+### Weighted FedAvg
 
 ```text
 w_global = sum_k ((n_k / sum_j n_j) * w_k)
 ```
 
-where `n_k` is the number of local training samples for client `k`.
+where `n_k` is the number of local samples for hospital `k`.
 
 ### FedProx
-
-FedProx uses the same weighted server aggregation but changes the local objective:
 
 ```text
 Loss = BCEWithLogitsLoss + (mu / 2) * ||w_local - w_global||^2
 ```
 
-The proximal term is computed against the frozen global parameters broadcast at the start of the round.
+FedProx is useful when hospital datasets are heterogeneous or non-IID.
 
-## Non-IID Simulation
+## Non-IID Hospital Simulation
 
 `core/non_iid.py` supports:
 
 - balanced IID split
 - label-skew split
 - quantity-skew split
-- configurable number of simulated hospitals
+- configurable number of hospitals
 - configurable imbalance severity
 
-Non-IID data matters because hospitals can differ in patient demographics, imaging devices, disease prevalence, and labeling protocols. A method that works on IID partitions can fail or converge poorly when each hospital observes a different distribution.
+Non-IID simulation matters because real hospitals can differ in scanner type, patient demographics, disease prevalence, and labeling behavior.
 
-## Training Pipeline
+## Model And Training
 
-DenseNet121 is configured with a one-logit binary classifier head. Training uses `BCEWithLogitsLoss`; sigmoid is applied only during inference and evaluation.
+The project uses DenseNet121 for binary pneumonia classification:
 
-Implemented options include ImageNet pretrained initialization, class weighting, weighted sampling, FedAvg/FedProx selection, early stopping, validation-threshold tuning, and checkpoint metadata.
-
-Best checkpoints store architecture, classes, threshold, metrics, date, and training configuration.
+- optional ImageNet pretrained weights
+- classifier head replaced with one output logit
+- `BCEWithLogitsLoss`
+- sigmoid only during inference/evaluation
+- class weighting / imbalance handling
+- early stopping
+- best checkpoint saving
+- threshold tuning on validation set
+- checkpoint metadata with architecture, classes, metrics, threshold, and training config
 
 ## Evaluation Metrics
 
-Reports include:
+The project avoids relying on accuracy alone. Reports can include:
 
 - accuracy
 - precision
@@ -118,163 +246,94 @@ Reports include:
 - per-round global metrics
 - client-level metrics
 
-False negatives are highlighted because missing pneumonia is clinically serious.
+## Grad-CAM
 
-## Threshold Tuning
+Grad-CAM is available as an explanation aid for DenseNet121. It can save:
 
-The validation set can choose thresholds using:
+- original image
+- heatmap
+- overlay
+- side-by-side comparison
 
-- `best_f1`
-- `high_sensitivity`
-- `balanced`
-- `fixed_0_5`
+Grad-CAM is not clinical proof and does not replace radiologist review.
 
-The chosen threshold is saved in model metadata and reused for test evaluation/inference.
+## Privacy And Security Limitations
 
-## Privacy and Security Limitations
-
-The prototype keeps image files local during simulated FL training, but this does not make the system secure.
+This is an academic prototype. It does not provide a formal privacy or security guarantee.
 
 Important limitations:
 
-- Model updates can leak information.
-- Secure aggregation is not implemented.
-- Differential privacy is not implemented by default.
-- Optional update clipping/noise exists only as a simple simulation knob, not a formal DP guarantee.
-- The mock FastAPI server is for local testing, not production deployment.
+- raw images are intended to remain local during the simulated FL workflow
+- model updates may still leak information
+- no production secure aggregation is implemented
+- no formal differential privacy accounting is implemented
+- no clinical validation has been performed
 
-## Grad-CAM Limitations
-
-Grad-CAM is implemented for DenseNet121 using `features.norm5`. It is an explanation aid only. It is not clinical proof, does not guarantee lesion localization, and must not be used as a substitute for radiologist review.
-
-## Running The App
+## Running The App From Source
 
 ```bash
 pip install -r requirements.txt
 python app.py
 ```
 
-Optional mock server:
+## Building The Windows App
 
-```bash
-python -m uvicorn server.mock_fl_server:app --reload
+Build the executable folder:
+
+```powershell
+pyinstaller --noconfirm --windowed --onedir --name HospitalFLSystem app.py
 ```
 
-## Running A LAN Federated Demo
+or:
 
-On the server machine:
-
-```bash
-uvicorn server.mock_fl_server:app --host 0.0.0.0 --port 8000
+```powershell
+.\build_exe.bat
 ```
 
-Or use the configured `server_host` and `server_port` from `config/app_config.json`:
+Then test:
 
-```bash
-python run_server.py
+```powershell
+dist\HospitalFLSystem\HospitalFLSystem.exe
 ```
 
-On each hospital/client machine on the same LAN:
-
-```bash
-python run_client.py --hospital-id hospital_1 --server-url http://SERVER_IP:8000 --dataset ./data/hospital_1
-```
-
-For two clients, run a second client with a different `hospital_id` and dataset path:
-
-```bash
-python run_client.py --hospital-id hospital_2 --server-url http://SERVER_IP:8000 --dataset ./data/hospital_2 --request-aggregation --min-clients 2
-```
-
-The server exposes:
-
-- `POST /fl/register-client`
-- `GET /fl/global-model`
-- `POST /fl/upload-update`
-- `GET /fl/project-status`
-- `POST /fl/aggregate-round`
-
-The older UI-compatible endpoints are still available.
-
-## Secure Aggregation Simulation
-
-Set:
-
-```json
-"security_mode": "secure_agg_sim"
-```
-
-or pass:
-
-```bash
-python run_client.py --security-mode secure_agg_sim ...
-```
-
-In this mode, each client uploads a masked weighted model contribution. Pairwise random masks are constructed so the aggregate can be recovered during server aggregation.
-
-This is a simulation only. It does not implement real key exchange, collusion resistance, authenticated clients, or production secure aggregation.
-
-## Homomorphic Encryption Demo
-
-Set:
-
-```bash
-python run_client.py --security-mode he_demo ...
-```
-
-This attempts a tiny Paillier additive encryption demo for a small vector of metrics if the optional `phe` package is installed. The DenseNet model weights are not encrypted with HE. Full homomorphic encryption of neural-network weights is computationally expensive and is not implemented in this project.
-
-## Running Experiments
-
-Register a dataset in the UI first, then run:
-
-```bash
-python run_experiments.py --methods local,centralized,fedavg,fedprox --rounds 3 --num-hospitals 3 --split label_skew --severity 0.7 --participation 0.67 --threshold high_sensitivity --seed 42
-```
-
-Repeated seeds:
-
-```bash
-python run_experiments.py --methods fedavg,fedprox --rounds 1 --num-hospitals 2 --repeats 3
-```
-
-Outputs are written under:
+To build the installer, open:
 
 ```text
-reports/experiments/<run_id>/
+installer/HospitalFLSystem.iss
 ```
 
-Each run exports JSON, CSV summaries, per-round CSV files, optional convergence plots, environment information, and the exact experiment configuration.
+in Inno Setup Compiler and click **Compile**.
 
 ## Reproducibility
 
-The reproducibility module records:
+The project includes reproducibility support for:
 
-- run ID
 - random seed
 - deterministic PyTorch settings where possible
-- Python/platform information
+- environment information
 - package versions
 - exported experiment configuration
-
-Use the same dataset, seed, split strategy, training config, and package environment to reproduce a run as closely as possible.
+- run ID for experiment tracking
 
 ## Current Limitations
 
-- This is a single-machine simulation, not a deployed multi-hospital system.
-- The centralized baseline uses locally registered data, not a real central data warehouse.
+- This is a desktop academic prototype, not a deployed hospital system.
+- FL behavior is simulated within the application workflow.
+- The centralized baseline uses locally registered data, not a real central hospital warehouse.
 - No formal privacy guarantee is provided.
 - No clinical validation has been performed.
 - Results depend strongly on dataset size, label quality, and split protocol.
 
 ## Future Work
 
-- Formal differential privacy accounting.
-- Real secure aggregation.
-- External validation sets.
-- Calibration analysis.
-- Multi-label chest X-ray tasks.
-- Stronger experiment tracking and statistical comparison across repeated seeds.
+- stronger experiment tracking
+- formal differential privacy accounting
+- real secure aggregation
+- external validation sets
+- calibration analysis
+- multi-label chest X-ray classification
+- DICOM support
+- real hospital network deployment study
 
 ## Download Windows Demo Installer
 

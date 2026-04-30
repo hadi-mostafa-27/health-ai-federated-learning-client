@@ -1,10 +1,10 @@
-# Health AI Federated Learning Client
+﻿# Health AI Federated Learning Client
 
 ## Comprehensive Academic Master Report
 
 Project type: Final Year Project / Academic prototype  
 Domain: Medical artificial intelligence, federated learning, chest X-ray classification  
-Main technologies: Python, PySide6, PyTorch, Torchvision, SQLite, FastAPI, PyInstaller, Inno Setup  
+Main technologies: Python, PySide6, PyTorch, Torchvision, SQLite, PyInstaller, Inno Setup  
 Primary task: Binary pneumonia classification from chest X-ray images  
 Project status: Research and teaching prototype, not a clinical product
 
@@ -20,9 +20,9 @@ The project includes privacy-preserving training concepts, but it does not provi
 
 ## Abstract
 
-Medical AI can benefit from data collected across multiple hospitals, but centralizing patient data is difficult because of privacy, legal, institutional, and governance constraints. Federated learning offers a possible alternative by allowing each hospital to train locally and share model updates instead of raw patient data. This project, titled Health AI Federated Learning Client, implements a Windows desktop prototype for federated learning across hospitals using PySide6, PyTorch, SQLite, and FastAPI.
+Medical AI can benefit from data collected across multiple hospitals, but centralizing patient data is difficult because of privacy, legal, institutional, and governance constraints. Federated learning offers a possible alternative by allowing each hospital to train locally and share model updates instead of raw patient data. This project, titled Health AI Federated Learning Client, implements a Windows desktop prototype for federated learning across hospitals using PySide6, PyTorch, and SQLite.
 
-The prototype focuses on binary chest X-ray pneumonia classification with two classes: NORMAL and PNEUMONIA. It supports local training, centralized baseline experimentation, federated FedAvg, federated FedProx, non-IID hospital simulation, threshold tuning, medical evaluation metrics, Grad-CAM visualization, SQLite experiment tracking, LAN-based mock federated coordination, secure aggregation simulation, and Docker package export after completed FL projects.
+The prototype focuses on binary chest X-ray pneumonia classification with two classes: NORMAL and PNEUMONIA. It supports local training, centralized baseline experimentation, federated FedAvg, federated FedProx, non-IID hospital simulation, threshold tuning, medical evaluation metrics, Grad-CAM visualization, SQLite experiment tracking, secure aggregation simulation, and Docker package export after completed FL projects.
 
 The system is designed for academic demonstration and experimentation rather than clinical deployment. It emphasizes correctness of the federated learning algorithm, transparent evaluation, reproducibility, and honest limitations. The project also includes Windows executable packaging using PyInstaller and installer creation using Inno Setup.
 
@@ -30,7 +30,7 @@ The system is designed for academic demonstration and experimentation rather tha
 
 ## Keywords
 
-Federated learning, medical AI, chest X-ray, pneumonia classification, PyTorch, PySide6, FedAvg, FedProx, non-IID data, DenseNet121, Grad-CAM, sensitivity, specificity, ROC-AUC, SQLite, FastAPI, secure aggregation simulation, Docker deployment package, Windows executable packaging.
+Federated learning, medical AI, chest X-ray, pneumonia classification, PyTorch, PySide6, FedAvg, FedProx, non-IID data, DenseNet121, Grad-CAM, sensitivity, specificity, ROC-AUC, SQLite, secure aggregation simulation, Docker deployment package, Windows executable packaging.
 
 ---
 
@@ -54,7 +54,7 @@ Federated learning, medical AI, chest X-ray, pneumonia classification, PyTorch, 
 16. Federated learning methodology
 17. FedAvg algorithm
 18. FedProx algorithm
-19. Multi-machine LAN federated learning support
+19. Desktop GUI workflow and project coordination
 20. Secure aggregation simulation
 21. Homomorphic encryption demo mode
 22. Evaluation methodology
@@ -114,8 +114,6 @@ The project includes:
 - Prediction page
 - Grad-CAM page
 - SQLite persistence
-- Mock FastAPI federated server
-- LAN client/server support
 - Secure aggregation simulation
 - Docker package export for completed projects
 - Windows executable packaging
@@ -188,7 +186,6 @@ Specific objectives:
 9. Tune classification threshold using validation data.
 10. Provide Grad-CAM visualization with clear limitations.
 11. Store datasets, models, metrics, FL rounds, and project records in SQLite.
-12. Support a mock FastAPI server for LAN-based client/server demonstrations.
 13. Include a secure aggregation simulation without claiming production security.
 14. Export Docker prototype packages after FL project completion.
 15. Package the application as a Windows executable and installer.
@@ -228,8 +225,6 @@ The project includes:
 - Medical evaluation metrics
 - Grad-CAM visualization
 - SQLite persistence
-- Mock server for FL coordination
-- LAN client/server prototype support
 - Secure aggregation simulation
 - Docker package export
 - Windows executable packaging
@@ -264,7 +259,6 @@ The project contributes:
 7. Threshold tuning strategies suitable for medical screening trade-offs.
 8. Grad-CAM visualization with clinically honest disclaimers.
 9. SQLite tracking of datasets, training, FL rounds, metrics, and exports.
-10. A mock FastAPI server for LAN federated learning demonstrations.
 11. A secure aggregation simulation module for educational purposes.
 12. Docker export packages for completed FL projects.
 13. Windows executable and installer packaging support.
@@ -281,15 +275,12 @@ flowchart TB
     Core["Core ML and FL Layer"]
     DB["SQLite Database"]
     FS["Filesystem Artifacts"]
-    Server["FastAPI Mock FL Server"]
     Docker["Docker Export Package"]
 
     UI --> Core
     UI --> DB
     Core --> DB
     Core --> FS
-    UI --> Server
-    Server --> FS
     Core --> Docker
     Docker --> FS
 ```
@@ -310,7 +301,6 @@ The UI provides pages for:
 - Prediction
 - Grad-CAM
 - Local training
-- FL sync
 - Project requests
 - Project invitations
 - Project runner
@@ -368,22 +358,6 @@ SQLite stores:
 - Docker exports
 - Activity logs
 
-### Mock Coordination Layer
-
-Implemented in:
-
-```text
-server/mock_fl_server.py
-```
-
-The server supports:
-
-- Client registration
-- Global model download
-- Client update upload
-- Project status query
-- Round aggregation
-
 ### Filesystem Artifact Layer
 
 The application writes:
@@ -414,7 +388,6 @@ When running as a packaged executable, writable files are stored under:
 | Data handling | pandas, Pillow | Dataset scanning and image validation |
 | ML utilities | scikit-learn | Splitting and metrics support |
 | Visualization | OpenCV, PySide painting | Grad-CAM and network visualizer |
-| API server | FastAPI, Uvicorn | Mock FL coordinator |
 | Persistence | SQLite | Local database |
 | Packaging | PyInstaller | Windows executable folder |
 | Installer | Inno Setup | Windows installer |
@@ -448,7 +421,6 @@ hospital_fl_client/
     db.py
     docker_exporter.py
     experiment_runner.py
-    fl_client.py
     fl_engine.py
     gradcam_engine.py
     inference.py
@@ -476,13 +448,10 @@ hospital_fl_client/
 
   models/
     local/
-    server_downloads/
 
   reports/
     experiments/
 
-  server/
-    mock_fl_server.py
 
   tests/
     test_secure_aggregation.py
@@ -933,79 +902,37 @@ FedProx is designed for heterogeneous FL settings. When hospitals have non-IID d
 
 ---
 
-## 19. Multi-Machine LAN Federated Learning Support
+## 19. Desktop GUI Workflow And Project Coordination
 
-The project includes a mock FastAPI server for LAN demonstrations:
+The current source version focuses on a desktop GUI simulation workflow. Project coordination is handled through local application state, SQLite records, the project request workflow, the FL project runner, and the results page.
 
-```text
-server/mock_fl_server.py
-```
+### Admin Coordination Workflow
 
-### Server Startup
+The admin can:
 
-Run on the coordinator machine:
+- register and manage hospitals
+- mark hospitals active or inactive
+- review project requests
+- approve or reject requested FL projects
+- select active hospitals for FL runs
+- run simulated FL rounds
+- inspect final project results
+- export Docker packages for completed projects
 
-```powershell
-uvicorn server.mock_fl_server:app --host 0.0.0.0 --port 8000
-```
+### Hospital Workflow
 
-### Client Startup
+Hospital users can:
 
-The LAN client workflow is implemented through the FastAPI endpoints and the reusable `core/fl_client.py` helper. If a CLI wrapper such as `run_client.py` is included in the submitted build, a hospital/client machine can use a command like:
+- request new FL projects
+- register local datasets
+- run local training and prediction workflows
+- generate Grad-CAM outputs
+- view joined project results
+- export Docker packages when a joined project is completed
 
-```powershell
-python run_client.py --hospital-id hospital_1 --server-url http://SERVER_IP:8000 --dataset ./data/hospital_1
-```
+### Visual Project Coordination
 
-If the CLI wrapper is not present in the current source tree, the same workflow can still be demonstrated through the desktop UI or by adding a thin script that calls `core.fl_client.FLClient`.
-
-### Main Endpoints
-
-```text
-POST /fl/register-client
-GET  /fl/global-model
-POST /fl/upload-update
-GET  /fl/project-status
-POST /fl/aggregate-round
-```
-
-### Client Registration
-
-Each client registers with:
-
-- hospital ID
-- sample count
-- algorithm
-- security mode
-
-### Model Download
-
-Clients download the latest global model before local training.
-
-### Update Upload
-
-Clients upload:
-
-- model update file
-- round number
-- sample count
-- local metrics
-- security metadata
-
-### Aggregation Threshold
-
-The server aggregates only when enough clients have uploaded. This simulates real FL coordination where a minimum client threshold is needed before aggregation.
-
-### Robustness Features
-
-The server handles:
-
-- client dropout
-- delayed uploads
-- invalid updates
-- incompatible model shapes
-- zero-client aggregation
-- stale round numbers
+The dashboard and project runner include a network visualizer showing active hospitals, inactive hospitals, participating nodes, and simulated communication between the central aggregation node and selected hospitals. This visualizer is an explanation aid; metric reporting remains the main evidence for model behavior.
 
 ---
 
@@ -1932,20 +1859,6 @@ or:
 .\.venv\Scripts\python.exe app.py
 ```
 
-### Run Mock Server
-
-```powershell
-uvicorn server.mock_fl_server:app --host 0.0.0.0 --port 8000
-```
-
-### Run Client
-
-The current source exposes the LAN client API through `core/fl_client.py`. If the optional CLI wrapper is present, run:
-
-```powershell
-python run_client.py --hospital-id hospital_1 --server-url http://SERVER_IP:8000 --dataset ./data/hospital_1
-```
-
 ### Build Executable
 
 ```powershell
@@ -2068,7 +1981,7 @@ reports/experiments/<run_id>/
 
 ## 41. Conclusion
 
-Health AI Federated Learning Client demonstrates how a hospital-oriented federated learning prototype can be built using Python desktop and ML tools. The project goes beyond a simple UI demo by implementing important academic features: sample-weighted FedAvg, FedProx, non-IID splitting, medical metrics, threshold tuning, Grad-CAM explanations, database tracking, mock multi-machine coordination, secure aggregation simulation, and deployment packaging.
+Health AI Federated Learning Client demonstrates how a hospital-oriented federated learning prototype can be built using Python desktop and ML tools. The project goes beyond a simple UI demo by implementing important academic features: sample-weighted FedAvg, FedProx, non-IID splitting, medical metrics, threshold tuning, Grad-CAM explanations, database tracking, secure aggregation simulation, and deployment packaging.
 
 The system is strongest as an educational and research prototype. It is useful for demonstrating FL concepts, comparing algorithms, and preparing academic reports or presentations. Its main limitation is that it is not clinically validated and not production secure. These limitations are explicitly documented so the project can be presented honestly and professionally.
 
@@ -2082,18 +1995,6 @@ Run app:
 
 ```powershell
 python app.py
-```
-
-Run server:
-
-```powershell
-uvicorn server.mock_fl_server:app --host 0.0.0.0 --port 8000
-```
-
-Run client, when the optional CLI wrapper is present:
-
-```powershell
-python run_client.py --hospital-id hospital_1 --server-url http://SERVER_IP:8000 --dataset ./data/hospital_1
 ```
 
 Run experiments, when the optional CLI wrapper is present:
@@ -2120,7 +2021,6 @@ iscc installer\HospitalFLSystem.iss
 {
   "hospital_id": "HOSP_101",
   "hospital_name": "BAU Hospital",
-  "server_url": "http://127.0.0.1:8000",
   "models_dir": "models",
   "dataset_dir": "data/raw",
   "reports_dir": "reports",

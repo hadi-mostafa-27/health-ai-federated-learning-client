@@ -12,7 +12,6 @@ from core.config_manager import ConfigManager
 from core.db import DatabaseManager
 from ui.pages.dashboard_page import DashboardPage
 from ui.pages.dataset_page import DatasetPage
-from ui.pages.federated_page import FederatedPage
 from ui.pages.gradcam_page import GradCAMPage
 from ui.pages.prediction_page import PredictionPage
 from ui.pages.results_page import ResultsPage
@@ -57,7 +56,6 @@ class MainWindow(QMainWindow):
                 ("Hospital Registry", HospitalRegistryPage(config, db)),
                 ("Project Requests", AdminRequestsPage(config, db)),
                 ("FL Project Runner", ProjectRunnerPage(config, db)),
-                ("FL Sync", FederatedPage(config, db)),
                 ("Results", ResultsPage(config, db)),
                 ("Profile", ProfilePage(config, db)),
             ]
@@ -70,7 +68,6 @@ class MainWindow(QMainWindow):
                 ("Prediction", PredictionPage(config, db)),
                 ("Grad-CAM", GradCAMPage(config, db)),
                 ("Local Training", TrainingPage(config, db)),
-                ("FL Sync", FederatedPage(config, db)),
                 ("Results", ResultsPage(config, db)),
                 ("Profile", ProfilePage(config, db)),
             ]

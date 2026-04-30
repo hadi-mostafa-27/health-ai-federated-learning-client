@@ -36,7 +36,7 @@
   <rect width="1400" height="720" fill="url(#bg)"/>
 
   <text x="70" y="82" class="title">Health AI Federated Learning Client</text>
-  <text x="70" y="118" class="subtitle">Academic PySide6, PyTorch, SQLite, and FastAPI prototype for hospital federated learning</text>
+  <text x="70" y="118" class="subtitle">Academic PySide6, PyTorch, and SQLite desktop prototype for hospital federated learning</text>
 
   <g filter="url(#shadow)">
     <rect x="70" y="155" width="1260" height="500" rx="20" fill="#ffffff"/>
@@ -114,5 +114,5 @@
   <text x="1105" y="575" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#d84c4c">2</text>
   <path d="M855 612 C900 565, 940 590, 985 555 S1095 535, 1170 570 S1230 545, 1260 530" fill="none" stroke="#0f766e" stroke-width="5"/>
 
-  <text x="70" y="690" class="subtitle">Transparent FL methodology, medical metrics, reproducibility, LAN demo, and honest prototype limitations</text>
+  <text x="70" y="690" class="subtitle">Transparent FL methodology, medical metrics, reproducibility, dashboard workflows, and honest prototype limitations</text>
 </svg>
