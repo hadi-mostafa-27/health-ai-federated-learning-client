@@ -1,0 +1,62 @@
+# Python cache and local environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.env
+.env.*
+
+# IDE/editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs and runtime files
+logs/
+*.log
+
+# Local SQLite databases
+database/*.db
+database/*.sqlite
+database/*.sqlite3
+
+# Local datasets and generated medical artifacts
+data/raw/
+data/predictions/
+data/visualizations/
+*.dcm
+
+# Trained models and ML checkpoints
+models/
+server/storage/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.pkl
+
+# Reports and generated exports
+reports/
+exports/
+
+# PyInstaller and installer build outputs
+build/
+dist/
+installer/Output/
+*.spec~
+*.exe
+*.msi
+*.zip
+
+# Test and coverage outputs
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store

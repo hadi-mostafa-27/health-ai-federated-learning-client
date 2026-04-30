@@ -1,0 +1,388 @@
+/* Clinical healthcare UI theme */
+* {
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #102033;
+    font-size: 13px;
+}
+
+QMainWindow,
+QStackedWidget,
+QWidget#central,
+#ContentScroll {
+    background: #f4f8fb;
+}
+
+QWidget {
+    background: transparent;
+}
+
+#TopBar {
+    background: #ffffff;
+    border-bottom: 1px solid #dbe7ef;
+}
+
+#PageTitle {
+    color: #102033;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+#PageSubtitle {
+    color: #60758a;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Sidebar */
+#Sidebar {
+    background: #0b2f42;
+    border-right: 1px solid #082536;
+}
+
+#BrandTitle {
+    color: #ffffff;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+#BrandSubtitle {
+    color: #b7d7e6;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+#NavLabel {
+    color: #8fb8ca;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+#HospitalFooter {
+    background: #123c52;
+    border: 1px solid #1d5068;
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: #e5f6fb;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+#NavList {
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+#NavList::item {
+    background: transparent;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin: 2px 0;
+    color: #d3e7ef;
+    font-weight: 600;
+    border: 1px solid transparent;
+}
+
+#NavList::item:selected {
+    background: #eaf7f8;
+    color: #0b2f42;
+    font-weight: 800;
+    border: 1px solid #c6e9ec;
+}
+
+#NavList::item:hover:!selected {
+    background: #16475f;
+    color: #ffffff;
+}
+
+/* Panels */
+#StatCard,
+#PanelCard {
+    background: #ffffff;
+    border: 1px solid #dbe7ef;
+    border-radius: 8px;
+}
+
+#StatCard:hover,
+#PanelCard:hover {
+    border: 1px solid #9bd8dc;
+}
+
+#CardTitle {
+    color: #60758a;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+#CardValue {
+    color: #0f766e;
+    font-size: 34px;
+    font-weight: 800;
+}
+
+#CardMeta {
+    color: #60758a;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+#SectionTitle {
+    color: #102033;
+    font-size: 19px;
+    font-weight: 800;
+}
+
+/* Controls */
+QPushButton {
+    background: #ffffff;
+    border: 1px solid #cfdde8;
+    border-radius: 8px;
+    padding: 10px 18px;
+    color: #213547;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+QPushButton:hover {
+    background: #f0f7fa;
+    border-color: #9acfd6;
+}
+
+QPushButton:pressed {
+    background: #dcecf2;
+}
+
+#PrimaryButton {
+    background: #0f766e;
+    border: 1px solid #0f766e;
+    color: #ffffff;
+}
+
+#PrimaryButton:hover {
+    background: #0b8a80;
+    border-color: #0b8a80;
+}
+
+QLineEdit,
+QSpinBox,
+QDoubleSpinBox,
+QComboBox,
+QTextEdit,
+QPlainTextEdit {
+    background: #ffffff;
+    border: 1px solid #cfdde8;
+    border-radius: 8px;
+    padding: 9px 12px;
+    color: #102033;
+    selection-background-color: #b7e5e8;
+    selection-color: #102033;
+}
+
+QLineEdit:focus,
+QSpinBox:focus,
+QDoubleSpinBox:focus,
+QComboBox:focus,
+QTextEdit:focus,
+QPlainTextEdit:focus {
+    border: 1px solid #0f766e;
+    background: #fbffff;
+}
+
+QComboBox::drop-down {
+    border: none;
+    width: 24px;
+}
+
+QCheckBox {
+    spacing: 8px;
+    color: #213547;
+}
+
+QCheckBox::indicator {
+    width: 17px;
+    height: 17px;
+    border-radius: 5px;
+    border: 1px solid #9fb2c2;
+    background: #ffffff;
+}
+
+QCheckBox::indicator:checked {
+    background: #0f766e;
+    border: 1px solid #0f766e;
+}
+
+/* Tables */
+QTableWidget {
+    background: #ffffff;
+    border: 1px solid #dbe7ef;
+    border-radius: 8px;
+    gridline-color: #edf3f7;
+    color: #213547;
+}
+
+QTableWidget::item {
+    padding: 10px;
+}
+
+QTableWidget::item:selected {
+    background: #e6f6f7;
+    color: #0b4b52;
+}
+
+QHeaderView::section {
+    background: #eef5f8;
+    padding: 11px;
+    font-weight: 800;
+    color: #40566b;
+    border: none;
+    border-bottom: 1px solid #dbe7ef;
+}
+
+QTabWidget::pane {
+    border: none;
+    background: transparent;
+}
+
+QTabBar::tab {
+    background: #e8f1f5;
+    color: #40566b;
+    border: 1px solid #cfdde8;
+    border-bottom: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 10px 16px;
+    margin-right: 4px;
+    font-weight: 800;
+}
+
+QTabBar::tab:selected {
+    background: #ffffff;
+    color: #0f766e;
+    border-color: #9bd8dc;
+}
+
+QTabBar::tab:hover:!selected {
+    background: #f3fafb;
+    color: #102033;
+}
+
+/* Progress and status */
+QProgressBar {
+    background: #dbe7ef;
+    border-radius: 6px;
+    height: 12px;
+    border: none;
+    text-align: center;
+    color: transparent;
+}
+
+QProgressBar::chunk {
+    background: #0f766e;
+    border-radius: 6px;
+}
+
+#BadgeSuccess {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-weight: 800;
+}
+
+#BadgeWarning {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-weight: 800;
+}
+
+#BadgeError {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-weight: 800;
+}
+
+QGroupBox {
+    background: #ffffff;
+    border: 1px solid #dbe7ef;
+    border-radius: 8px;
+    margin-top: 18px;
+    padding-top: 18px;
+    color: #102033;
+    font-weight: 800;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 14px;
+    padding: 0 8px;
+    color: #0f766e;
+}
+
+QScrollBar:vertical {
+    border: none;
+    background: #f4f8fb;
+    width: 10px;
+}
+
+QScrollBar::handle:vertical {
+    background: #b9cbd8;
+    min-height: 34px;
+    border-radius: 5px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #8fa7b8;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical,
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal {
+    height: 0;
+    width: 0;
+}
+
+/* Dialogs and message boxes */
+QDialog,
+QMessageBox {
+    background: #ffffff;
+    color: #102033;
+}
+
+QMessageBox QLabel,
+QDialog QLabel {
+    color: #102033;
+    background: transparent;
+    font-size: 13px;
+}
+
+QMessageBox QPushButton,
+QDialog QPushButton {
+    background: #ffffff;
+    border: 1px solid #9fb2c2;
+    border-radius: 8px;
+    padding: 8px 18px;
+    color: #102033;
+    font-weight: 800;
+    min-width: 90px;
+}
+
+QMessageBox QPushButton:hover,
+QDialog QPushButton:hover {
+    background: #eaf7f8;
+    border-color: #0f766e;
+}
+
+QMessageBox QPushButton:pressed,
+QDialog QPushButton:pressed {
+    background: #dcecf2;
+}
