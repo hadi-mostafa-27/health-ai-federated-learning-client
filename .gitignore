@@ -46,6 +46,8 @@ exports/
 build/
 dist/
 installer/Output/
+release/*.zip
+release/*.exe
 *.spec~
 *.exe
 *.msi

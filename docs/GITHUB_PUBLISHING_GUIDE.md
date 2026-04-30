@@ -157,13 +157,49 @@ After pushing, check the repository page and confirm:
 
 ## Optional: Add A Release Later
 
-After the source code is safely published, you may create a GitHub Release and attach the installer manually:
+After the source code is safely published, you may create a GitHub Release and attach the demo ZIP:
 
 ```text
-HospitalFLSystem_Setup.exe
+HospitalFLSystem_Demo_Setup.zip
 ```
 
-Only attach an installer if you are comfortable publishing the executable. Do not include patient data, local databases, or private trained models inside the release.
+Only attach an installer ZIP if you are comfortable publishing the executable demo. Do not include patient data, local databases, or private trained models inside the release.
+
+## Recommended Demo Installer Workflow
+
+The generated Windows installer is too large and too binary-heavy for the normal source repository. Share it as a GitHub Release asset instead.
+
+1. Build the `.exe` application folder with PyInstaller.
+2. Build the setup installer with Inno Setup.
+3. Run:
+
+```powershell
+.\package_demo_zip.bat
+```
+
+4. Upload this file to GitHub Releases:
+
+```text
+release/HospitalFLSystem_Demo_Setup.zip
+```
+
+5. In `README.md`, replace `YOUR_USERNAME` in the demo download link:
+
+```text
+https://github.com/YOUR_USERNAME/health-ai-federated-learning-client/releases/latest/download/HospitalFLSystem_Demo_Setup.zip
+```
+
+Use the Releases page for large demo files. Keep the Git repository for source code, documentation, tests, and configuration.
+
+## README Preview Image
+
+The README uses this image at the top:
+
+```text
+docs/assets/app_preview.svg
+```
+
+If you later capture a real screenshot of the app, replace this file or add a new image in `docs/assets/` and update the README image path.
 
 ## Academic Presentation Note
 

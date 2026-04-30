@@ -1,8 +1,20 @@
 # Health AI Federated Learning Client
 
+<p align="center">
+  <img src="docs/assets/app_preview.svg" alt="Health AI Federated Learning Client application preview" width="100%">
+</p>
+
+<p align="center">
+  <a href="https://github.com/YOUR_USERNAME/health-ai-federated-learning-client/releases/latest/download/HospitalFLSystem_Demo_Setup.zip">
+    <strong>Download Windows Demo Installer</strong>
+  </a>
+</p>
+
 Academic PySide6 + PyTorch + FastAPI prototype for studying federated learning across hospital chest X-ray pneumonia classifiers.
 
 This project is a research and teaching prototype. It is not a clinical device.
+
+> Demo download note: the Windows installer is distributed through GitHub Releases as `HospitalFLSystem_Demo_Setup.zip`. The generated installer ZIP is not committed to the source repository because it is a large binary artifact.
 
 For the main academic master report, see [docs/ACADEMIC_MASTER_REPORT.md](docs/ACADEMIC_MASTER_REPORT.md).
 For supporting technical documentation, see [docs/PROJECT_DOCUMENTATION.md](docs/PROJECT_DOCUMENTATION.md).
@@ -11,6 +23,18 @@ For publishing the project professionally on GitHub, see [docs/GITHUB_PUBLISHING
 ## GitHub Safety Note
 
 The repository is configured to keep source code, documentation, tests, configuration, and build scripts under version control while excluding local datasets, trained model checkpoints, SQLite databases, reports, Docker exports, virtual environments, and generated Windows build outputs.
+
+## Windows Demo Download
+
+The recommended way to share the `.exe` setup with users is through GitHub Releases:
+
+1. Build the installer with PyInstaller and Inno Setup.
+2. Run `package_demo_zip.bat`.
+3. Upload `release/HospitalFLSystem_Demo_Setup.zip` to a GitHub Release.
+4. Replace `YOUR_USERNAME` in the download link above with your GitHub username.
+5. Name the uploaded Release asset exactly `HospitalFLSystem_Demo_Setup.zip`.
+
+This keeps the repository source-code focused while still giving visitors a clear demo download.
 
 ## Project Objective
 
