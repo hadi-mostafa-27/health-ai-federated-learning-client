@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/YOUR_USERNAME/health-ai-federated-learning-client/releases/latest/download/HospitalFLSystem_Demo_Setup.zip">
+  <a href="https://github.com/hadi-mostafa-27/health-ai-federated-learning-client/releases/latest/download/HospitalFLSystem_Setup.exe">
     <strong>Download Windows Demo Installer</strong>
   </a>
 </p>
@@ -14,27 +14,14 @@ Academic PySide6 + PyTorch + FastAPI prototype for studying federated learning a
 
 This project is a research and teaching prototype. It is not a clinical device.
 
-> Demo download note: the Windows installer is distributed through GitHub Releases as `HospitalFLSystem_Demo_Setup.zip`. The generated installer ZIP is not committed to the source repository because it is a large binary artifact.
 
 For the main academic master report, see [docs/ACADEMIC_MASTER_REPORT.md](docs/ACADEMIC_MASTER_REPORT.md).
 For supporting technical documentation, see [docs/PROJECT_DOCUMENTATION.md](docs/PROJECT_DOCUMENTATION.md).
-For publishing the project professionally on GitHub, see [docs/GITHUB_PUBLISHING_GUIDE.md](docs/GITHUB_PUBLISHING_GUIDE.md).
+
 
 ## GitHub Safety Note
 
 The repository is configured to keep source code, documentation, tests, configuration, and build scripts under version control while excluding local datasets, trained model checkpoints, SQLite databases, reports, Docker exports, virtual environments, and generated Windows build outputs.
-
-## Windows Demo Download
-
-The recommended way to share the `.exe` setup with users is through GitHub Releases:
-
-1. Build the installer with PyInstaller and Inno Setup.
-2. Run `package_demo_zip.bat`.
-3. Upload `release/HospitalFLSystem_Demo_Setup.zip` to a GitHub Release.
-4. Replace `YOUR_USERNAME` in the download link above with your GitHub username.
-5. Name the uploaded Release asset exactly `HospitalFLSystem_Demo_Setup.zip`.
-
-This keeps the repository source-code focused while still giving visitors a clear demo download.
 
 ## Project Objective
 
@@ -288,3 +275,15 @@ Use the same dataset, seed, split strategy, training config, and package environ
 - Calibration analysis.
 - Multi-label chest X-ray tasks.
 - Stronger experiment tracking and statistical comparison across repeated seeds.
+
+## Download Windows Demo Installer
+
+The Windows demo installer is available from the latest GitHub Release:
+
+[Download HospitalFLSystem_Setup.exe](https://github.com/hadi-mostafa-27/health-ai-federated-learning-client/releases/latest/download/HospitalFLSystem_Setup.exe)
+
+Release page:
+
+[v1.0.0-demo](https://github.com/hadi-mostafa-27/health-ai-federated-learning-client/releases/tag/v1.0.0-demo)
+
+This installer is for academic demonstration only. The application is not a clinical device and is not intended for real patient diagnosis.
